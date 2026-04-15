@@ -3,13 +3,22 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Code2, Brain, Workflow } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const roles = [
   "Software Development",
   "AI Solutions",
   "Process Automation",
   "Digital Platforms",
+];
+
+const portfolioItems = [
+  { title: "FinTech Dashboard", category: "Web App", color: "from-violet-500 to-purple-700" },
+  { title: "Healthcare AI Platform", category: "AI Solution", color: "from-cyan-500 to-blue-700" },
+  { title: "E-Commerce Rebuild", category: "Web Development", color: "from-amber-500 to-orange-700" },
+  { title: "Logistics Automation", category: "Automation", color: "from-pink-500 to-rose-700" },
+  { title: "SaaS Analytics Tool", category: "Web App", color: "from-emerald-500 to-green-700" },
+  { title: "Enterprise CRM", category: "Platform", color: "from-indigo-500 to-violet-700" },
 ];
 
 function RotatingText() {
@@ -23,14 +32,14 @@ function RotatingText() {
   }, []);
 
   return (
-    <span className="relative inline-block h-[1.2em] overflow-hidden align-bottom">
+    <span className="relative inline-block overflow-hidden h-[1.15em] align-bottom">
       {roles.map((role, i) => (
         <motion.span
           key={role}
           className="absolute left-0 text-gradient whitespace-nowrap"
-          initial={{ y: "100%", opacity: 0 }}
+          initial={false}
           animate={{
-            y: i === index ? "0%" : "-100%",
+            y: i === index ? "0%" : i === (index - 1 + roles.length) % roles.length ? "-110%" : "110%",
             opacity: i === index ? 1 : 0,
           }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -42,151 +51,102 @@ function RotatingText() {
   );
 }
 
-const floatingCards = [
-  { icon: Code2, label: "Custom Software", x: "8%", y: "22%", delay: 0.8 },
-  { icon: Brain, label: "AI & ML", x: "78%", y: "18%", delay: 1.1 },
-  { icon: Workflow, label: "Automation", x: "72%", y: "68%", delay: 1.4 },
-];
-
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background layers */}
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-12">
+      {/* Subtle background */}
       <div className="absolute inset-0 bg-grid" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/80" />
 
-      {/* Ambient glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-pink-500/5 blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-amber-500/3 blur-[140px] pointer-events-none" />
-
-      {/* Floating cards — desktop only */}
-      <div className="hidden lg:block">
-        {floatingCards.map((card) => (
-          <motion.div
-            key={card.label}
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{
-              delay: card.delay,
-              duration: 0.6,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="absolute z-10"
-            style={{ left: card.x, top: card.y }}
-          >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="flex items-center gap-3 rounded-2xl border border-border bg-card/60 backdrop-blur-md px-5 py-3.5 shadow-lg"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-brand">
-                <card.icon className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-sm font-medium text-foreground">
-                {card.label}
-              </span>
-            </motion.div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Main content */}
-      <div className="relative z-20 mx-auto max-w-5xl px-6 text-center">
-        {/* Pill badge */}
-        <motion.div
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
+        {/* Top tag */}
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="text-sm font-semibold tracking-wide text-primary uppercase"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-            </span>
-            Available for new projects
-          </span>
-        </motion.div>
+          Software Development, AI & Automation
+        </motion.p>
 
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 font-heading text-5xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6 font-heading text-5xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl max-w-4xl"
         >
-          We Build
-          <br />
+          Building Powerful{" "}
           <RotatingText />
           <br />
-          <span className="text-muted-foreground">That Drive Growth</span>
+          <span className="text-muted-foreground">That Drive Real Results</span>
         </motion.h1>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed"
-        >
-          From concept to deployment — we design, develop, and maintain digital
-          platforms powered by cutting-edge AI and intelligent automation.
-        </motion.p>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-10 flex flex-col sm:flex-row items-start gap-4"
         >
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.02]"
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.02]"
           >
-            Start a Project
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+            Get a Proposal
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 rounded-full border border-border px-8 py-4 text-base font-medium text-foreground transition-all duration-300 hover:bg-card hover:border-primary/30"
+            className="group inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground hover:bg-card hover:border-primary/30 transition-all duration-300"
           >
-            Explore Services
-            <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-1 group-hover:text-foreground" />
+            Our Services
+            <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-all duration-200 group-hover:translate-x-0.5" />
           </Link>
         </motion.div>
 
-        {/* Trust strip */}
+        {/* Portfolio Carousel */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="mt-20"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-16 relative"
         >
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
-            Trusted by forward-thinking companies
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-40">
-            {["Company A", "Company B", "Company C", "Company D"].map(
-              (name) => (
-                <span
-                  key={name}
-                  className="font-heading text-lg font-bold tracking-tight text-foreground"
-                >
-                  {name}
-                </span>
-              )
-            )}
+          <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory -mx-6 px-6">
+            {portfolioItems.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 + i * 0.08, duration: 0.4 }}
+                className="snap-start shrink-0 w-[320px] sm:w-[380px] lg:w-[420px]"
+              >
+                <div className={`relative h-[240px] sm:h-[280px] rounded-2xl bg-gradient-to-br ${item.color} overflow-hidden group cursor-pointer`}>
+                  {/* Fake browser dots */}
+                  <div className="absolute top-4 left-4 flex gap-1.5 z-10">
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                  </div>
+                  {/* Grid pattern overlay */}
+                  <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+                  {/* Bottom label */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/60 to-transparent">
+                    <p className="text-[11px] font-medium uppercase tracking-wider text-white/70">{item.category}</p>
+                    <p className="text-lg font-bold text-white mt-0.5">{item.title}</p>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Fade edges */}
+          <div className="absolute top-0 right-0 bottom-4 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
         </motion.div>
       </div>
-
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }
