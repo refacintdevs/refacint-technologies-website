@@ -17,7 +17,7 @@ const services = [
   {
     id: "software",
     icon: Code2,
-    title: "Software Development",
+    title: "Custom Software Development",
     subtitle: "Custom-built digital products",
     description:
       "We build web applications, mobile apps, and enterprise platforms from the ground up. Every line of code is written with scalability, performance, and maintainability in mind.",
@@ -28,13 +28,11 @@ const services = [
       "Database design & optimization",
       "Third-party integrations & webhooks",
     ],
-    gradient: "from-amber-500 to-orange-600",
-    glowColor: "bg-amber-500/10",
   },
   {
     id: "ai",
     icon: Brain,
-    title: "AI Solutions",
+    title: "AI & Machine Learning",
     subtitle: "Intelligence that drives decisions",
     description:
       "From predictive analytics to natural language processing, we design and deploy AI systems that transform how your business operates and competes.",
@@ -45,8 +43,6 @@ const services = [
       "AI-powered chatbots & virtual assistants",
       "Data pipeline architecture & ETL",
     ],
-    gradient: "from-purple-500 to-violet-600",
-    glowColor: "bg-purple-500/10",
   },
   {
     id: "automation",
@@ -62,8 +58,6 @@ const services = [
       "Document processing & data extraction",
       "Integration between legacy & modern systems",
     ],
-    gradient: "from-pink-500 to-rose-600",
-    glowColor: "bg-pink-500/10",
   },
   {
     id: "platform",
@@ -79,8 +73,6 @@ const services = [
       "Infrastructure as Code (Terraform, Pulumi)",
       "Performance monitoring & observability",
     ],
-    gradient: "from-cyan-500 to-blue-600",
-    glowColor: "bg-cyan-500/10",
   },
   {
     id: "maintenance",
@@ -96,8 +88,6 @@ const services = [
       "Dependency updates & tech debt reduction",
       "SLA-backed support tiers",
     ],
-    gradient: "from-emerald-500 to-green-600",
-    glowColor: "bg-emerald-500/10",
   },
   {
     id: "transformation",
@@ -113,15 +103,12 @@ const services = [
       "Architecture review & recommendations",
       "Change management & adoption support",
     ],
-    gradient: "from-orange-500 to-red-600",
-    glowColor: "bg-orange-500/10",
   },
 ];
 
 export function ServicesPage() {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-30" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
@@ -132,14 +119,13 @@ export function ServicesPage() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-block rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground backdrop-blur-sm">
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary">
             Our Services
-          </span>
-          <h1 className="mt-6 font-heading text-5xl font-extrabold tracking-tight sm:text-6xl">
-            Technology That{" "}
-            <span className="text-gradient">Works</span>
+          </p>
+          <h1 className="mt-4 font-heading text-[2.6rem] sm:text-[3rem] font-bold tracking-tight leading-[1.15]">
+            Everything Your Business Needs For Success
           </h1>
-          <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             End-to-end solutions — from first concept through deployment and
             ongoing evolution. Every service built on the same principle: ship
             fast, build right, scale smart.
@@ -147,37 +133,30 @@ export function ServicesPage() {
         </motion.div>
 
         {/* Service blocks */}
-        <div className="mt-24 space-y-20">
+        <div className="mt-20 space-y-6">
           {services.map((service, i) => (
             <motion.div
               key={service.id}
               id={service.id}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, margin: "-60px" }}
               transition={{
-                duration: 0.7,
+                duration: 0.6,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group relative scroll-mt-24"
+              className="scroll-mt-24"
             >
-              <div className="relative overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm transition-all duration-500 hover:border-primary/15 hover:bg-card/50">
-                {/* Glow */}
-                <div
-                  className={`absolute -top-32 -right-32 h-64 w-64 rounded-full ${service.glowColor} blur-[100px] pointer-events-none`}
-                />
-
-                <div className="relative grid grid-cols-1 lg:grid-cols-5 gap-0">
+              <div className="overflow-hidden rounded-2xl border border-border bg-background transition-all duration-300 hover:border-primary/15 hover:shadow-lg hover:shadow-primary/5">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   {/* Left — info */}
-                  <div className="lg:col-span-3 p-10 lg:p-14">
+                  <div className="lg:col-span-3 p-8 lg:p-12">
                     <div className="flex items-center gap-4">
-                      <div
-                        className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${service.gradient} shadow-lg`}
-                      >
-                        <service.icon className="h-6 w-6 text-white" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                        <service.icon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                        <h2 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                           {service.title}
                         </h2>
                         <p className="text-sm text-muted-foreground">
@@ -186,33 +165,31 @@ export function ServicesPage() {
                       </div>
                     </div>
 
-                    <p className="mt-6 text-muted-foreground leading-relaxed text-base">
+                    <p className="mt-6 text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
 
                     <Link
                       href="/contact"
-                      className="group/link mt-8 inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                      className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline transition-colors"
                     >
                       Discuss this service
-                      <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
                   </div>
 
                   {/* Right — features */}
-                  <div className="lg:col-span-2 border-t lg:border-t-0 lg:border-l border-border bg-card/20 p-10 lg:p-14">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  <div className="lg:col-span-2 border-t lg:border-t-0 lg:border-l border-border bg-secondary/30 p-8 lg:p-12">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
                       What&apos;s included
                     </h4>
-                    <ul className="mt-6 space-y-4">
+                    <ul className="mt-5 space-y-3.5">
                       {service.features.map((feature) => (
                         <li
                           key={feature}
                           className="flex items-start gap-3 text-sm text-foreground/80"
                         >
-                          <CheckCircle2
-                            className={`mt-0.5 h-4 w-4 shrink-0 bg-gradient-to-br ${service.gradient} rounded-full text-white`}
-                          />
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                           {feature}
                         </li>
                       ))}
@@ -223,6 +200,23 @@ export function ServicesPage() {
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-16 text-center"
+        >
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20"
+          >
+            Get a Proposal
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

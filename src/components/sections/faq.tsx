@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
@@ -37,77 +37,77 @@ const faqs = [
   },
 ];
 
-function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.06, duration: 0.4 }}
-    >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-start justify-between gap-4 text-left py-6 group"
-      >
-        <h3 className="font-heading text-base font-bold text-foreground group-hover:text-primary transition-colors sm:text-lg">
-          {faq.question}
-        </h3>
-        <div className="shrink-0 mt-1">
-          {isOpen ? (
-            <Minus className="h-4 w-4 text-primary" />
-          ) : (
-            <Plus className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-          )}
-        </div>
-      </button>
-      <motion.div
-        initial={false}
-        animate={{
-          height: isOpen ? "auto" : 0,
-          opacity: isOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="overflow-hidden"
-      >
-        <p className="pb-6 text-sm text-muted-foreground leading-relaxed pr-12">
-          {faq.answer}
-        </p>
-      </motion.div>
-      <div className="h-px bg-border" />
-    </motion.div>
-  );
-}
-
 export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (i: number) =>
+    setOpenIndex(openIndex === i ? null : i);
+
   return (
-    <section className="relative py-28 overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+    <section className="relative py-24 overflow-hidden">
+      <div className="absolute inset-0 bg-secondary/40" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          <p className="text-sm font-semibold tracking-wide text-primary uppercase">
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary">
             FAQs
           </p>
-          <h2 className="mt-4 font-heading text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Your Questions,{" "}
-            <span className="text-gradient">Answered</span>
+          <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
+            Your Questions, Answered
           </h2>
         </motion.div>
 
         {/* Accordion */}
-        <div className="mt-14">
-          <div className="h-px bg-border" />
+        <div className="mt-12 space-y-3">
           {faqs.map((faq, i) => (
-            <FAQItem key={faq.question} faq={faq} index={i} />
+            <motion.div
+              key={faq.question}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+              className="rounded-xl border border-border bg-background overflow-hidden"
+            >
+              <button
+                onClick={() => toggle(i)}
+                className="flex w-full items-center justify-between px-6 py-5 text-left"
+              >
+                <span className="font-heading text-[0.95rem] font-semibold text-foreground pr-4">
+                  {faq.question}
+                </span>
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  {openIndex === i ? (
+                    <Minus className="h-3.5 w-3.5 text-primary" />
+                  ) : (
+                    <Plus className="h-3.5 w-3.5 text-primary" />
+                  )}
+                </span>
+              </button>
+
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-5">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -3,6 +3,13 @@
 import { motion } from "framer-motion";
 import { Target, Eye, Gem, Users } from "lucide-react";
 
+const stats = [
+  { value: "50+", label: "Projects Delivered" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "12+", label: "Team Experts" },
+  { value: "4+", label: "Years Experience" },
+];
+
 const values = [
   {
     icon: Target,
@@ -63,6 +70,15 @@ const timeline = [
   },
 ];
 
+const team = [
+  { name: "Founder & CEO", initials: "RC" },
+  { name: "Lead Engineer", initials: "LE" },
+  { name: "AI/ML Lead", initials: "ML" },
+  { name: "Product Designer", initials: "PD" },
+  { name: "Backend Engineer", initials: "BE" },
+  { name: "DevOps Engineer", initials: "DO" },
+];
+
 export function AboutPage() {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
@@ -76,80 +92,107 @@ export function AboutPage() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-block rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground backdrop-blur-sm">
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary">
             About Us
-          </span>
-          <h1 className="mt-6 font-heading text-5xl font-extrabold tracking-tight sm:text-6xl">
-            We Build What{" "}
-            <span className="text-gradient">Matters</span>
+          </p>
+          <h1 className="mt-4 font-heading text-[2.6rem] sm:text-[3rem] font-bold tracking-tight leading-[1.15]">
+            We&apos;re Obsessed With Building Technology That Works
           </h1>
-          <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             Refacint Technologies is a software development and AI solutions
             company. We design, build, deploy, and maintain digital platforms
             for businesses ready to move fast and build right.
           </p>
         </motion.div>
 
-        {/* Mission block */}
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-16 grid grid-cols-2 gap-5 sm:grid-cols-4"
+        >
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="rounded-2xl border border-border bg-background p-6 text-center"
+            >
+              <p className="font-heading text-3xl sm:text-4xl font-bold text-primary">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Mission & Approach */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-24 relative overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm p-10 lg:p-16"
+          className="mt-24 overflow-hidden rounded-2xl border border-border bg-background p-8 lg:p-14"
         >
-          <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-purple-500/5 blur-[100px] pointer-events-none" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
                 Our Mission
-              </h3>
-              <p className="mt-4 text-2xl font-heading font-bold leading-snug text-foreground">
-                To empower businesses with technology that&apos;s built to last — not
-                just to launch.
+              </p>
+              <p className="mt-4 font-heading text-2xl font-bold leading-snug text-foreground">
+                To empower businesses with technology that&apos;s built to last
+                — not just to launch.
               </p>
             </div>
             <div>
-              <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
                 Our Approach
-              </h3>
+              </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                We don&apos;t believe in one-size-fits-all. Every engagement starts
-                with deep discovery — understanding your business, users, and
-                constraints. Then we architect a solution that fits your reality,
-                not our template. We ship in sprints, communicate obsessively,
-                and stay with you well past launch day.
+                We don&apos;t believe in one-size-fits-all. Every engagement
+                starts with deep discovery — understanding your business, users,
+                and constraints. Then we architect a solution that fits your
+                reality, not our template. We ship in sprints, communicate
+                obsessively, and stay with you well past launch day.
               </p>
             </div>
           </div>
         </motion.div>
 
         {/* Values */}
-        <div className="mt-32">
+        <div className="mt-28">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Our <span className="text-gradient">Values</span>
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Our Values
+            </p>
+            <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
+              What Drives Us
             </h2>
           </motion.div>
 
-          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, i) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card/30 backdrop-blur-sm p-8 transition-all duration-300 hover:border-primary/20 hover:bg-card/50"
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="rounded-2xl border border-border bg-background p-7 transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand">
-                  <value.icon className="h-5 w-5 text-white" />
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
+                  <value.icon className="h-5 w-5 text-primary" />
                 </div>
                 <h3 className="mt-5 font-heading text-lg font-bold text-foreground">
                   {value.title}
@@ -162,23 +205,64 @@ export function AboutPage() {
           </div>
         </div>
 
-        {/* Timeline */}
-        <div className="mt-32">
+        {/* Team */}
+        <div className="mt-28">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Our <span className="text-gradient">Journey</span>
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Team Members
+            </p>
+            <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
+              Our Creative Crew
             </h2>
           </motion.div>
 
-          <div className="relative mt-16 max-w-3xl mx-auto">
+          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+            {team.map((member, i) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.5 }}
+                className="rounded-2xl border border-border bg-background p-5 text-center transition-all duration-300 hover:border-primary/20 hover:shadow-md"
+              >
+                {/* Placeholder avatar — replace with real photos */}
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary text-xl font-bold text-primary">
+                  {member.initials}
+                </div>
+                <p className="mt-4 text-sm font-semibold text-foreground">
+                  {member.name}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Timeline */}
+        <div className="mt-28">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Our Journey
+            </p>
+            <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
+              How We Got Here
+            </h2>
+          </motion.div>
+
+          <div className="relative mt-14 max-w-3xl mx-auto">
             {/* Vertical line */}
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent sm:left-1/2" />
+            <div className="absolute left-4 top-0 bottom-0 w-px bg-border sm:left-1/2" />
 
             {timeline.map((item, i) => (
               <motion.div
@@ -186,7 +270,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
                 className={`relative flex items-start gap-8 mb-12 ${
                   i % 2 === 0
                     ? "sm:flex-row"
@@ -194,7 +278,7 @@ export function AboutPage() {
                 }`}
               >
                 {/* Dot */}
-                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-gradient-brand border-2 border-background z-10 mt-1.5" />
+                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-primary border-2 border-background z-10 mt-1.5" />
 
                 {/* Content */}
                 <div className="ml-12 sm:ml-0 sm:w-1/2 sm:px-8">

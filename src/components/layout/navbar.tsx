@@ -1,30 +1,94 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+const services = [
+  {
+    label: "Custom Software Development",
+    href: "/services#software",
+    description: "Web & mobile applications built for scale.",
+  },
+  {
+    label: "AI & Machine Learning",
+    href: "/services#ai",
+    description: "Intelligent systems that drive decisions.",
+  },
+  {
+    label: "Process Automation",
+    href: "/services#automation",
+    description: "Eliminate bottlenecks and manual work.",
+  },
+  {
+    label: "Platform Engineering",
+    href: "/services#platform",
+    description: "Cloud-native infrastructure at any scale.",
+  },
+  {
+    label: "Maintenance & Support",
+    href: "/services#maintenance",
+    description: "Keep your systems healthy and secure.",
+  },
+  {
+    label: "Digital Transformation",
+    href: "/services#transformation",
+    description: "Modernize legacy systems strategically.",
+  },
 ];
+
+const company = [
+  {
+    label: "About Us",
+    href: "/about",
+    description: "Learn more about Refacint Technologies.",
+  },
+  {
+    label: "Careers",
+    href: "/careers",
+    description: "Explore job opportunities.",
+  },
+];
+
+type DropdownKey = "services" | "company" | null;
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<DropdownKey>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<DropdownKey>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-dropdown]")) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
+  const handleMouseEnter = (key: DropdownKey) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => setActiveDropdown(null), 150);
+  };
 
   return (
     <>
@@ -35,65 +99,199 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "bg-background/70 backdrop-blur-xl border-b border-border shadow-sm"
-            : "bg-transparent"
+            ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
+            : "bg-background"
         )}
       >
-        <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 lg:px-8">
+        <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group shrink-0">
             <Image
               src="/images/logo.png"
               alt="Refacint Technologies"
-              width={40}
-              height={40}
-              className="transition-transform duration-300 group-hover:scale-110"
+              width={38}
+              height={38}
+              className="transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="flex flex-col">
-              <span className="font-heading text-lg font-bold tracking-tight leading-none">
-                REFACINT
-              </span>
-              <span className="text-[10px] font-medium tracking-[0.3em] text-muted-foreground uppercase">
-                Technologies
+            <div className="flex items-center gap-2">
+              <div className="w-px h-7 bg-border" />
+              <span className="font-heading text-[1.15rem] font-bold tracking-tight text-foreground">
+                Refacint
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+          <div className="hidden lg:flex items-center gap-1">
+            <Link
+              href="/"
+              className="px-4 py-2 text-[0.925rem] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              Home
+            </Link>
+
+            {/* Services Dropdown */}
+            <div
+              data-dropdown
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("services")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                className={cn(
+                  "flex items-center gap-1 px-4 py-2 text-[0.925rem] font-medium transition-colors duration-200",
+                  activeDropdown === "services"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
               >
-                {link.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-gradient-brand rounded-full transition-all duration-300 group-hover:w-2/3" />
-              </Link>
-            ))}
+                Services
+                <ChevronDown
+                  className={cn(
+                    "h-3.5 w-3.5 transition-transform duration-200",
+                    activeDropdown === "services" && "rotate-180"
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === "services" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                  >
+                    <div className="w-[520px] rounded-2xl border border-border bg-background shadow-xl shadow-black/5 p-3">
+                      <div className="grid grid-cols-2 gap-1">
+                        {services.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="group rounded-xl px-4 py-3 transition-colors duration-150 hover:bg-secondary"
+                          >
+                            <p className="text-[0.875rem] font-semibold text-foreground group-hover:text-primary transition-colors">
+                              {item.label}
+                            </p>
+                            <p className="mt-0.5 text-[0.8rem] text-muted-foreground leading-snug">
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="mt-2 border-t border-border pt-3 px-4 pb-1">
+                        <Link
+                          href="/services"
+                          onClick={() => setActiveDropdown(null)}
+                          className="inline-flex items-center gap-1.5 text-[0.825rem] font-semibold text-primary hover:underline"
+                        >
+                          View All Services
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Company Dropdown */}
+            <div
+              data-dropdown
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("company")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                className={cn(
+                  "flex items-center gap-1 px-4 py-2 text-[0.925rem] font-medium transition-colors duration-200",
+                  activeDropdown === "company"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                Company
+                <ChevronDown
+                  className={cn(
+                    "h-3.5 w-3.5 transition-transform duration-200",
+                    activeDropdown === "company" && "rotate-180"
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === "company" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                  >
+                    <div className="w-[280px] rounded-2xl border border-border bg-background shadow-xl shadow-black/5 p-3">
+                      {company.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className="group block rounded-xl px-4 py-3 transition-colors duration-150 hover:bg-secondary"
+                        >
+                          <p className="text-[0.875rem] font-semibold text-foreground group-hover:text-primary transition-colors">
+                            {item.label}
+                          </p>
+                          <p className="mt-0.5 text-[0.8rem] text-muted-foreground leading-snug">
+                            {item.description}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link
+              href="/blog"
+              className="px-4 py-2 text-[0.925rem] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              Blog
+            </Link>
+
+            <Link
+              href="/contact"
+              className="px-4 py-2 text-[0.925rem] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Right side */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
             <Link
               href="/contact"
-              className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25"
+              className="group relative inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-[0.875rem] font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20"
             >
-              Get Started
+              Get a Proposal
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </div>
 
           {/* Mobile toggle */}
-          <div className="flex md:hidden items-center gap-3">
+          <div className="flex lg:hidden items-center gap-3">
             <ThemeToggle />
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="p-2 text-foreground"
               aria-label="Toggle menu"
             >
-              {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMobileOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </nav>
@@ -107,41 +305,156 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-background pt-[80px] px-6 lg:hidden overflow-y-auto"
           >
-            <nav className="flex flex-col gap-2">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMobileOpen(false)}
-                    className="flex items-center justify-between py-4 text-2xl font-heading font-bold text-foreground border-b border-border hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                    <ArrowRight className="h-5 w-5 text-muted-foreground" />
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="mt-8"
+            <nav className="flex flex-col gap-1 pb-8">
+              {/* Home */}
+              <Link
+                href="/"
+                onClick={() => setIsMobileOpen(false)}
+                className="flex items-center justify-between py-4 text-lg font-heading font-bold text-foreground border-b border-border hover:text-primary transition-colors"
               >
+                Home
+                <ArrowRight className="h-4 w-4 text-muted-foreground" />
+              </Link>
+
+              {/* Services accordion */}
+              <div className="border-b border-border">
+                <button
+                  onClick={() =>
+                    setMobileExpanded(
+                      mobileExpanded === "services" ? null : "services"
+                    )
+                  }
+                  className="flex w-full items-center justify-between py-4 text-lg font-heading font-bold text-foreground"
+                >
+                  Services
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 text-muted-foreground transition-transform duration-200",
+                      mobileExpanded === "services" && "rotate-180"
+                    )}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === "services" && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-4 pl-4 space-y-1">
+                        {services.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="block rounded-lg px-3 py-2.5 hover:bg-secondary transition-colors"
+                          >
+                            <p className="text-[0.9rem] font-semibold text-foreground">
+                              {item.label}
+                            </p>
+                            <p className="text-[0.8rem] text-muted-foreground">
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                        <Link
+                          href="/services"
+                          onClick={() => setIsMobileOpen(false)}
+                          className="inline-flex items-center gap-1.5 px-3 py-2 text-[0.85rem] font-semibold text-primary"
+                        >
+                          View All Services
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Company accordion */}
+              <div className="border-b border-border">
+                <button
+                  onClick={() =>
+                    setMobileExpanded(
+                      mobileExpanded === "company" ? null : "company"
+                    )
+                  }
+                  className="flex w-full items-center justify-between py-4 text-lg font-heading font-bold text-foreground"
+                >
+                  Company
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 text-muted-foreground transition-transform duration-200",
+                      mobileExpanded === "company" && "rotate-180"
+                    )}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === "company" && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-4 pl-4 space-y-1">
+                        {company.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="block rounded-lg px-3 py-2.5 hover:bg-secondary transition-colors"
+                          >
+                            <p className="text-[0.9rem] font-semibold text-foreground">
+                              {item.label}
+                            </p>
+                            <p className="text-[0.8rem] text-muted-foreground">
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Blog */}
+              <Link
+                href="/blog"
+                onClick={() => setIsMobileOpen(false)}
+                className="flex items-center justify-between py-4 text-lg font-heading font-bold text-foreground border-b border-border hover:text-primary transition-colors"
+              >
+                Blog
+                <ArrowRight className="h-4 w-4 text-muted-foreground" />
+              </Link>
+
+              {/* Contact */}
+              <Link
+                href="/contact"
+                onClick={() => setIsMobileOpen(false)}
+                className="flex items-center justify-between py-4 text-lg font-heading font-bold text-foreground border-b border-border hover:text-primary transition-colors"
+              >
+                Contact
+                <ArrowRight className="h-4 w-4 text-muted-foreground" />
+              </Link>
+
+              {/* CTA */}
+              <div className="mt-6">
                 <Link
                   href="/contact"
                   onClick={() => setIsMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full rounded-full bg-gradient-brand px-6 py-4 text-lg font-semibold text-white"
+                  className="flex items-center justify-center gap-2 w-full rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground"
                 >
-                  Get Started
-                  <ArrowRight className="h-5 w-5" />
+                  Get a Proposal
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
-              </motion.div>
+              </div>
             </nav>
           </motion.div>
         )}
