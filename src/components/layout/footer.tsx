@@ -54,7 +54,7 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Refacint Technologies"
                 width={36}
                 height={36}

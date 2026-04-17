@@ -107,7 +107,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Refacint Technologies"
               width={38}
               height={38}
