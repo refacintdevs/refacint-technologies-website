@@ -3,8 +3,6 @@
 @import "shadcn/tailwind.css";
 @source "../../components";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -48,7 +46,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Refacint Brand Colors — Azuro-inspired */
+  /* Refacint Brand Colors */
   --color-brand-navy: #0E1435;
   --color-brand-blue: #0D70DA;
   --color-brand-accent: #0D69CC;
@@ -59,9 +57,10 @@
 }
 
 /* ============================================
-   LIGHT MODE (DEFAULT — Azuro style)
+   LIGHT MODE ONLY
    ============================================ */
 :root {
+  color-scheme: light;
   --background: #FFFFFF;
   --foreground: #0E1435;
   --card: #FFFFFF;
@@ -97,43 +96,6 @@
 }
 
 /* ============================================
-   DARK MODE
-   ============================================ */
-.dark {
-  --background: #0B0F24;
-  --foreground: #E8EAF0;
-  --card: #111633;
-  --card-foreground: #E8EAF0;
-  --popover: #111633;
-  --popover-foreground: #E8EAF0;
-  --primary: #3B8EF0;
-  --primary-foreground: #FFFFFF;
-  --secondary: #161B3A;
-  --secondary-foreground: #E8EAF0;
-  --muted: #1A1F40;
-  --muted-foreground: #8B90A8;
-  --accent: #3B8EF0;
-  --accent-foreground: #FFFFFF;
-  --destructive: #EF4444;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: #3B8EF0;
-  --chart-1: #3B8EF0;
-  --chart-2: #0D69CC;
-  --chart-3: #00B4D8;
-  --chart-4: #474B64;
-  --chart-5: #8B90A8;
-  --sidebar: #0F1329;
-  --sidebar-foreground: #E8EAF0;
-  --sidebar-primary: #3B8EF0;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #161B3A;
-  --sidebar-accent-foreground: #E8EAF0;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #3B8EF0;
-}
-
-/* ============================================
    BASE STYLES
    ============================================ */
 @layer base {
@@ -158,7 +120,6 @@
    CUSTOM UTILITIES
    ============================================ */
 @layer utilities {
-  /* Text gradient — now blue-to-cyan for Refacint */
   .text-gradient {
     background: linear-gradient(135deg, #0D70DA, #00B4D8);
     -webkit-background-clip: text;
@@ -166,26 +127,17 @@
     background-clip: text;
   }
 
-  /* Brand gradient button */
   .bg-gradient-brand {
     background: linear-gradient(135deg, #0D70DA, #0D69CC);
   }
 
-  /* Subtle grid background */
   .bg-grid {
     background-image:
       linear-gradient(to right, rgba(14, 20, 53, 0.04) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(14, 20, 53, 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
   }
-  .dark .bg-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
 
-  /* Noise overlay */
   .bg-noise {
     position: relative;
   }
@@ -199,18 +151,10 @@
     z-index: 0;
   }
 
-  /* Glow effects — blue tinted */
-  .glow-sm {
-    box-shadow: 0 0 15px rgba(13, 112, 218, 0.12);
-  }
-  .glow-md {
-    box-shadow: 0 0 30px rgba(13, 112, 218, 0.18);
-  }
-  .glow-lg {
-    box-shadow: 0 0 60px rgba(13, 112, 218, 0.22);
-  }
+  .glow-sm { box-shadow: 0 0 15px rgba(13, 112, 218, 0.12); }
+  .glow-md { box-shadow: 0 0 30px rgba(13, 112, 218, 0.18); }
+  .glow-lg { box-shadow: 0 0 60px rgba(13, 112, 218, 0.22); }
 
-  /* Navy section background */
   .bg-navy {
     background-color: #0E1435;
     color: #FFFFFF;
@@ -219,42 +163,36 @@
     background-color: #F6F8FF;
   }
 
-  /* Prose */
   .prose-custom h2 {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    margin-top: 2.5rem; margin-bottom: 1rem;
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.5rem; font-weight: 700;
     letter-spacing: -0.025em;
     color: var(--foreground);
   }
   .prose-custom h3 {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+    margin-top: 2rem; margin-bottom: 0.75rem;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.25rem; font-weight: 700;
     color: var(--foreground);
   }
   .prose-custom p {
-    margin-bottom: 1rem;
-    line-height: 1.9;
+    margin-bottom: 1rem; line-height: 1.9;
     color: var(--muted-foreground);
   }
   .prose-custom strong {
-    color: var(--foreground);
-    font-weight: 600;
+    color: var(--foreground); font-weight: 600;
   }
   .prose-custom li {
-    margin-left: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-left: 1.5rem; margin-bottom: 0.5rem;
     color: var(--muted-foreground);
-    list-style-type: disc;
-    line-height: 1.8;
+    list-style-type: disc; line-height: 1.8;
+  }
+  .prose-custom ul { margin: 1rem 0; }
+  .prose-custom a {
+    color: var(--primary); text-decoration: underline;
   }
 
-  /* Scrollbar hide */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -263,3 +201,4 @@
     display: none;
   }
 }
+
