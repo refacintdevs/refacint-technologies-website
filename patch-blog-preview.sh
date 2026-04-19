@@ -1,3 +1,19 @@
+#!/usr/bin/env bash
+# Patch: replace homepage BlogPreview dummy posts with live data from Neon.
+# Run from project root.
+set -euo pipefail
+
+if [ ! -f "package.json" ] || [ ! -f "src/components/sections/blog-preview.tsx" ]; then
+  echo "ERROR: run this from your project root."
+  exit 1
+fi
+
+echo "==> Backing up old blog-preview.tsx"
+cp src/components/sections/blog-preview.tsx \
+   "src/components/sections/blog-preview.tsx.bak.$(date +%s)"
+
+echo "==> Writing new blog-preview.tsx (server component, reads from DB)"
+cat > src/components/sections/blog-preview.tsx << 'PATCH_EOF'
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -96,3 +112,41 @@ export async function BlogPreview() {
     </section>
   );
 }
+PATCH_EOF
+
+echo "==> Writing new blog-preview-card.tsx (client child for animation)"
+cat > src/components/sections/blog-preview-card.tsx << 'PATCH_EOF'
+"use client";
+
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
+
+export function BlogPreviewCard({
+  children,
+  index,
+}: {
+  children: ReactNode;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.08, duration: 0.5 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+PATCH_EOF
+
+echo ""
+echo "============================================================"
+echo "  Done."
+echo "============================================================"
+echo ""
+echo "  Test locally:  npm run dev"
+echo "  Deploy:        git add . && git commit -m \"feat: live blog posts on homepage\" && git push"
+echo ""
+echo "  If empty, the section auto-hides until you publish at least one post."
