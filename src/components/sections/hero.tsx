@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const roles = [
@@ -57,26 +57,19 @@ function RotatingText() {
   }, []);
 
   return (
-    <span className="relative inline-block overflow-hidden h-[1.15em] align-bottom">
-      {roles.map((role, i) => (
+    <span className="inline-block relative overflow-hidden h-[1.2em] align-bottom" style={{ minWidth: "280px" }}>
+      <AnimatePresence mode="wait">
         <motion.span
-          key={role}
+          key={roles[index]}
           className="absolute left-0 text-primary whitespace-nowrap"
-          initial={false}
-          animate={{
-            y:
-              i === index
-                ? "0%"
-                : i === (index - 1 + roles.length) % roles.length
-                ? "-110%"
-                : "110%",
-            opacity: i === index ? 1 : 0,
-          }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {role}
+          {roles[index]}
         </motion.span>
-      ))}
+      </AnimatePresence>
     </span>
   );
 }
