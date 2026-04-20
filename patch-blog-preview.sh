@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Patch: replace homepage BlogPreview dummy posts with live data from Neon.
+# Re-apply: homepage BlogPreview reads live posts from Neon, not dummies.
+# The engineer reverted this file; this restores it.
+#
 # Run from project root.
 set -euo pipefail
 
@@ -8,9 +10,12 @@ if [ ! -f "package.json" ] || [ ! -f "src/components/sections/blog-preview.tsx" 
   exit 1
 fi
 
-echo "==> Backing up old blog-preview.tsx"
+echo "==> Backing up the reverted file"
 cp src/components/sections/blog-preview.tsx \
-   "src/components/sections/blog-preview.tsx.bak.$(date +%s)"
+   "src/components/sections/blog-preview.tsx.reverted.$(date +%s)"
+
+echo "==> Cleaning old .bak files in that folder"
+find src/components/sections -maxdepth 1 -name "blog-preview.tsx.bak.*" -delete 2>/dev/null || true
 
 echo "==> Writing new blog-preview.tsx (server component, reads from DB)"
 cat > src/components/sections/blog-preview.tsx << 'PATCH_EOF'
@@ -39,14 +44,14 @@ export async function BlogPreview() {
               From the Blog
             </p>
             <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-              Insights &amp; Thinking
+              Practical Thinking for Business Owners
             </h2>
           </div>
           <Link
             href="/blog"
             className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            View All Posts
+            All Posts
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -104,7 +109,7 @@ export async function BlogPreview() {
             href="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            View All Posts
+            All Posts
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -114,7 +119,7 @@ export async function BlogPreview() {
 }
 PATCH_EOF
 
-echo "==> Writing new blog-preview-card.tsx (client child for animation)"
+echo "==> Ensuring blog-preview-card.tsx exists"
 cat > src/components/sections/blog-preview-card.tsx << 'PATCH_EOF'
 "use client";
 
@@ -147,6 +152,6 @@ echo "  Done."
 echo "============================================================"
 echo ""
 echo "  Test locally:  npm run dev"
-echo "  Deploy:        git add . && git commit -m \"feat: live blog posts on homepage\" && git push"
+echo "  Then:          git add . && git commit -m \"fix: restore homepage blog preview live DB feed\" && git push"
 echo ""
-echo "  If empty, the section auto-hides until you publish at least one post."
+echo "  If homepage section is empty, publish at least one post at /admin — it auto-hides until then."
