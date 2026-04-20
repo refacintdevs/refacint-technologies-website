@@ -11,6 +11,7 @@ const roles = [
   "Automated Workflows",
   "Custom CRMs",
   "Content Systems",
+  "Automation Tools",
 ];
 
 const portfolioItems = [
@@ -57,15 +58,11 @@ function RotatingText() {
   }, []);
 
   return (
-    <span className="inline-flex relative overflow-hidden h-[1.2em] align-bottom">
-      {/* Hidden measurer — renders the widest text to set container width */}
-      <span className="invisible whitespace-nowrap">
-        {roles.reduce((a, b) => (a.length > b.length ? a : b))}
-      </span>
+    <span className="block relative overflow-hidden h-[1.25em]">
       <AnimatePresence mode="wait">
         <motion.span
           key={roles[index]}
-          className="absolute left-0 text-primary whitespace-nowrap"
+          className="block text-primary"
           initial={{ y: "100%", opacity: 0 }}
           animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "-100%", opacity: 0 }}
@@ -165,7 +162,7 @@ export function Hero() {
           We build. We automate. You grow.
         </motion.p>
 
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -173,21 +170,22 @@ export function Hero() {
             delay: 0.1,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mt-6 font-heading text-[2.8rem] sm:text-[3.4rem] lg:text-[3.9rem] font-extrabold leading-[1.12] tracking-tight max-w-4xl"
+          className="mt-6 max-w-4xl"
         >
-          We Build{" "}
-          <RotatingText />
-          <br />
-          <span className="text-muted-foreground">
-            That Run Your Business
-          </span>
-        </motion.h1>
+          <h1 className="font-heading text-[1.75rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.6rem] font-extrabold leading-[1.2] tracking-tight">
+            We Build
+            <RotatingText />
+            <span className="text-muted-foreground">
+              That Run Your Business
+            </span>
+          </h1>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl"
+          className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl"
         >
           Fullstack development, custom CRMs, AI agents, and workflow automation
           — built for business owners who want real systems, not just websites.
