@@ -6,13 +6,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const roles = [
-  "Software & App Development",
+  "Apps & Software",
   "AI Agents",
-  "Workflow Automation",
+  "Automated Workflows",
   "Custom CRMs",
-  "Content Automation",
-  "Maintenance & Support",
-  "AI Consulting",
+  "Content Systems",
 ];
 
 const portfolioItems = [
@@ -180,7 +178,7 @@ export function Hero() {
           }}
           className="mt-6 font-heading text-[2.8rem] sm:text-[3.4rem] lg:text-[3.9rem] font-extrabold leading-[1.12] tracking-tight max-w-4xl"
         >
-          We Build the Apps, AI &amp;{" "}
+          We Build{" "}
           <RotatingText />
           <br />
           <span className="text-muted-foreground">
