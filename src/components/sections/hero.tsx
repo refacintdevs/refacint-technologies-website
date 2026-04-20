@@ -57,7 +57,11 @@ function RotatingText() {
   }, []);
 
   return (
-    <span className="inline-block relative overflow-hidden h-[1.2em] align-bottom" style={{ minWidth: "280px" }}>
+    <span className="inline-flex relative overflow-hidden h-[1.2em] align-bottom">
+      {/* Hidden measurer — renders the widest text to set container width */}
+      <span className="invisible whitespace-nowrap">
+        {roles.reduce((a, b) => (a.length > b.length ? a : b))}
+      </span>
       <AnimatePresence mode="wait">
         <motion.span
           key={roles[index]}
