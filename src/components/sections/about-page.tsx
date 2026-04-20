@@ -4,69 +4,69 @@ import { motion } from "framer-motion";
 import { Target, Eye, Gem, Users } from "lucide-react";
 
 const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "12+", label: "Team Experts" },
-  { value: "4+", label: "Years Experience" },
+  { value: "50+", label: "Projects Shipped" },
+  { value: "7", label: "Core Services" },
+  { value: "98%", label: "On-Time Delivery" },
+  { value: "4+", label: "Years Building" },
 ];
 
 const values = [
   {
     icon: Target,
-    title: "Precision",
+    title: "We Build What You Actually Need",
     description:
-      "Every decision — from architecture to pixel — is intentional. We don't ship 'good enough.'",
+      "No feature bloat. No unnecessary complexity. We figure out the simplest version that solves your problem, build that first, then improve from there.",
   },
   {
     icon: Eye,
-    title: "Transparency",
+    title: "You See Everything",
     description:
-      "No black boxes. You see progress weekly, understand every decision, and own everything we build.",
+      "Weekly updates. Shared project boards. No disappearing for three months and hoping for the best. You know what's happening at every step.",
   },
   {
     icon: Gem,
-    title: "Craft",
+    title: "Clean Work, Every Time",
     description:
-      "We treat code as craft. Clean, documented, tested, and built to outlast the project timeline.",
+      "We write code that the next developer can actually read. Documented, tested, and built so your system doesn't fall apart when one person leaves.",
   },
   {
     icon: Users,
-    title: "Partnership",
+    title: "We're Partners, Not Vendors",
     description:
-      "We're not vendors. We embed with your team, learn your domain, and operate as an extension of your organization.",
+      "We don't just take orders and disappear. We learn your business, push back when something doesn't make sense, and treat your project like our own.",
   },
 ];
 
 const timeline = [
   {
     year: "2021",
-    title: "Founded",
+    title: "Started Building",
     description:
-      "Started with a simple thesis: businesses deserve technology partners who actually build, not just advise.",
+      "Founded with a simple idea: business owners deserve tech partners who actually deliver — not agencies that overpromise and underdeliver.",
   },
   {
     year: "2022",
-    title: "First Major Platform",
+    title: "First Major Systems",
     description:
-      "Delivered our first enterprise-grade platform — a logistics automation system processing 10K+ daily transactions.",
+      "Shipped our first production CRM and automation system. Clients started coming back with second and third projects.",
   },
   {
     year: "2023",
-    title: "AI Practice Launched",
+    title: "AI Gets Real",
     description:
-      "Expanded into AI solutions, deploying ML models and NLP systems for clients across fintech and healthcare.",
+      "Started building AI agents and automation systems for clients. Not hype — real tools that saved real hours every week.",
   },
   {
     year: "2024",
-    title: "Team Growth",
+    title: "Team & Process Matured",
     description:
-      "Grew to a distributed team of 12+ specialists across engineering, design, and strategy.",
+      "Grew the team, locked in our process. Every project now runs on the same framework: discover, design, build, ship, support.",
   },
   {
     year: "2025",
-    title: "50+ Projects Milestone",
+    title: "50+ Projects Shipped",
     description:
-      "Crossed 50 successful project deliveries with a 98% client satisfaction rate.",
+      "Crossed 50 completed projects with a 98% on-time delivery rate. Expanded into content automation and AI consulting.",
   },
 ];
 
@@ -93,15 +93,15 @@ export function AboutPage() {
           className="max-w-3xl"
         >
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            About Us
+            About Refacint
           </p>
           <h1 className="mt-4 font-heading text-[2.6rem] sm:text-[3rem] font-bold tracking-tight leading-[1.15]">
-            We&apos;re Obsessed With Building Technology That Works
+            We Build the Systems That Let You Focus on Running Your Business
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Refacint Technologies is a software development and AI solutions
-            company. We design, build, deploy, and maintain digital platforms
-            for businesses ready to move fast and build right.
+            Most business owners know they need better technology. They just
+            don&apos;t want to deal with the headaches that come with building it.
+            That&apos;s where we come in.
           </p>
         </motion.div>
 
@@ -132,7 +132,7 @@ export function AboutPage() {
           ))}
         </motion.div>
 
-        {/* Mission & Approach */}
+        {/* Brand Story */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,23 +143,32 @@ export function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
-                Our Mission
+                Why We Exist
               </p>
               <p className="mt-4 font-heading text-2xl font-bold leading-snug text-foreground">
-                To empower businesses with technology that&apos;s built to last
-                — not just to launch.
+                We started Refacint because too many business owners were getting
+                burned by agencies that talk big and deliver small.
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                You&apos;d pay thousands for a &ldquo;custom solution&rdquo; and get a
+                WordPress template with your logo slapped on it. Or you&apos;d hire
+                developers who disappear for months and come back with something
+                that doesn&apos;t work. We&apos;ve seen it too many times.
               </p>
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
-                Our Approach
+                How We Work
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                We don&apos;t believe in one-size-fits-all. Every engagement
-                starts with deep discovery — understanding your business, users,
-                and constraints. Then we architect a solution that fits your
-                reality, not our template. We ship in sprints, communicate
-                obsessively, and stay with you well past launch day.
+                We do things differently. You tell us your problem. We figure
+                out the simplest, most effective way to solve it. We build it
+                fast, we show you progress every week, and we don&apos;t stop until
+                it actually works in your business.
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                No jargon. No mystery timelines. No &ldquo;we&apos;ll circle back on
+                that.&rdquo; Just straight talk and systems that work.
               </p>
             </div>
           </div>
@@ -174,10 +183,10 @@ export function AboutPage() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-              Our Values
+              How We Operate
             </p>
             <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-              What Drives Us
+              What You Can Expect From Us
             </h2>
           </motion.div>
 
@@ -194,7 +203,7 @@ export function AboutPage() {
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
                   <value.icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="mt-5 font-heading text-lg font-bold text-foreground">
+                <h3 className="mt-5 font-heading text-base font-bold text-foreground">
                   {value.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -214,10 +223,10 @@ export function AboutPage() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-              Team Members
+              The Team
             </p>
             <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-              Our Creative Crew
+              The People Behind the Work
             </h2>
           </motion.div>
 
@@ -231,7 +240,6 @@ export function AboutPage() {
                 transition={{ delay: i * 0.06, duration: 0.5 }}
                 className="rounded-2xl border border-border bg-background p-5 text-center transition-all duration-300 hover:border-primary/20 hover:shadow-md"
               >
-                {/* Placeholder avatar — replace with real photos */}
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary text-xl font-bold text-primary">
                   {member.initials}
                 </div>
@@ -253,7 +261,7 @@ export function AboutPage() {
             className="text-center"
           >
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-              Our Journey
+              Our Story
             </p>
             <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
               How We Got Here
@@ -261,7 +269,6 @@ export function AboutPage() {
           </motion.div>
 
           <div className="relative mt-14 max-w-3xl mx-auto">
-            {/* Vertical line */}
             <div className="absolute left-4 top-0 bottom-0 w-px bg-border sm:left-1/2" />
 
             {timeline.map((item, i) => (
@@ -277,10 +284,7 @@ export function AboutPage() {
                     : "sm:flex-row-reverse sm:text-right"
                 }`}
               >
-                {/* Dot */}
                 <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-primary border-2 border-background z-10 mt-1.5" />
-
-                {/* Content */}
                 <div className="ml-12 sm:ml-0 sm:w-1/2 sm:px-8">
                   <span className="font-mono text-xs font-semibold text-primary tracking-wider">
                     {item.year}

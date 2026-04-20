@@ -3,14 +3,13 @@
 import { motion } from "framer-motion";
 
 const items = [
-  "Software Development",
-  "Artificial Intelligence",
-  "Process Automation",
-  "Platform Engineering",
-  "Digital Transformation",
-  "Cloud Architecture",
-  "API Design",
-  "Machine Learning",
+  "Software & App Development",
+  "AI Agents",
+  "Workflow Automation",
+  "Custom CRMs",
+  "Content Automation",
+  "Maintenance & Support",
+  "AI Consulting",
 ];
 
 export function Marquee() {

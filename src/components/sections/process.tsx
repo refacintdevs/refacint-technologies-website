@@ -5,27 +5,27 @@ import { motion } from "framer-motion";
 const steps = [
   {
     step: "01",
-    title: "Discovery",
+    title: "You Tell Us the Problem",
     description:
-      "We listen. Deep-dive into your goals, constraints, and technical landscape to define a clear path forward.",
+      "We get on a call, you tell us what's not working or what you need built. No technical knowledge required — we'll translate.",
   },
   {
     step: "02",
-    title: "Strategy & Design",
+    title: "We Come Back With a Plan",
     description:
-      "Architecture, wireframes, and a detailed roadmap — everything aligned before a single line of code is written.",
+      "Within a few days, you get a clear proposal: what we'll build, how long it takes, and what it costs. No surprises, no hidden fees.",
   },
   {
     step: "03",
-    title: "Build & Iterate",
+    title: "We Build It, You See Progress",
     description:
-      "Agile sprints with continuous feedback. You see progress weekly, not quarterly. No surprises.",
+      "We work in weekly sprints. Every week you see what's done, give feedback, and we adjust. You're never in the dark.",
   },
   {
     step: "04",
-    title: "Launch & Evolve",
+    title: "We Ship It & Stick Around",
     description:
-      "Deploy with confidence. Post-launch support, monitoring, and continuous improvement built into every engagement.",
+      "We launch your system, make sure it works, and stay available for support, fixes, and improvements. We don't disappear after delivery.",
   },
 ];
 
@@ -33,7 +33,6 @@ export function Process() {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,18 +40,17 @@ export function Process() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            Our Process
+            How It Works
           </p>
           <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-            How We Deliver
+            From First Call to Working System — Here&apos;s the Process
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
-            A proven framework refined across 50+ projects. Transparent, fast,
-            and built for real results.
+            We keep it simple. Four steps, clear communication, no mystery
+            timelines.
           </p>
         </motion.div>
 
-        {/* Steps grid */}
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((item, i) => (
             <motion.div

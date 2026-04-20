@@ -8,29 +8,29 @@ import Link from "next/link";
 const testimonials = [
   {
     quote:
-      "Refacint delivered exactly what we needed — a fast, reliable platform that handles thousands of daily transactions without breaking a sweat. Their team was responsive, transparent, and genuinely invested in our success.",
-    name: "Adewale Okonkwo",
-    title: "CTO, LogiFlow",
-    initials: "AO",
-    project: "logiflow.io",
+      "We needed a CRM that actually matched how our sales team works — not the other way around. Refacint built it in 6 weeks, and our close rate went up 28% in the first quarter. They didn't just build what we asked for, they challenged our assumptions and made it better.",
+    name: "Client Name",
+    title: "Role, Company Name",
+    initials: "CN",
+    project: "project-name.com",
     projectUrl: "#",
   },
   {
     quote:
-      "We went from idea to launched product in 8 weeks. The quality of code, the attention to UX, and the communication throughout the project exceeded every expectation. Refacint is our go-to engineering partner.",
-    name: "Ngozi Eze",
-    title: "Founder, HealthBridge",
-    initials: "NE",
-    project: "healthbridge.ng",
+      "We were spending 15 hours a week on content — writing, scheduling, posting across five platforms. Refacint built us an automation system that cut that to 2 hours. Same quality, same consistency, fraction of the time. It paid for itself in the first month.",
+    name: "Client Name",
+    title: "Role, Company Name",
+    initials: "CN",
+    project: "project-name.com",
     projectUrl: "#",
   },
   {
     quote:
-      "The AI recommendation engine they built for our e-commerce platform increased average order value by 34% in the first quarter. They don't just build — they understand the business impact of every feature.",
-    name: "Tunde Bakare",
-    title: "Head of Product, ShopWave",
-    initials: "TB",
-    project: "shopwave.co",
+      "I'd talked to three agencies before Refacint. They were the only ones who actually understood what I was trying to build. No jargon, no upselling — just 'here's how we'd do it, here's what it costs, here's when it's done.' And they delivered exactly that.",
+    name: "Client Name",
+    title: "Role, Company Name",
+    initials: "CN",
+    project: "project-name.com",
     projectUrl: "#",
   },
 ];
@@ -48,7 +48,6 @@ export function Testimonials() {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,21 +55,18 @@ export function Testimonials() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            Client Stories
+            What Clients Say
           </p>
           <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-            Powerful Results &amp; Happy Clients
+            Real Results, Real Feedback
           </h2>
         </motion.div>
 
-        {/* Testimonial Card */}
         <div className="mt-14">
           <div className="overflow-hidden rounded-2xl border border-border bg-background">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Left — Quote */}
               <div className="p-8 sm:p-10 lg:p-14 flex flex-col justify-between">
                 <div>
-                  {/* Project link */}
                   <Link
                     href={testimonial.projectUrl}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
@@ -79,7 +75,6 @@ export function Testimonials() {
                     <ArrowRight className="h-3 w-3" />
                   </Link>
 
-                  {/* Quote */}
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={current}
@@ -95,7 +90,6 @@ export function Testimonials() {
                         </p>
                       </div>
 
-                      {/* Author */}
                       <div className="mt-8 flex items-center gap-4">
                         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
                           {testimonial.initials}
@@ -113,20 +107,11 @@ export function Testimonials() {
                   </AnimatePresence>
                 </div>
 
-                {/* Navigation */}
                 <div className="mt-10 flex items-center gap-3">
-                  <button
-                    onClick={prev}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all hover:border-primary/30 hover:bg-secondary"
-                    aria-label="Previous testimonial"
-                  >
+                  <button onClick={prev} className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all hover:border-primary/30 hover:bg-secondary" aria-label="Previous testimonial">
                     <ArrowLeft className="h-4 w-4" />
                   </button>
-                  <button
-                    onClick={next}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all hover:border-primary/30 hover:bg-secondary"
-                    aria-label="Next testimonial"
-                  >
+                  <button onClick={next} className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all hover:border-primary/30 hover:bg-secondary" aria-label="Next testimonial">
                     <ArrowRight className="h-4 w-4" />
                   </button>
                   <span className="ml-2 text-xs text-muted-foreground">
@@ -135,7 +120,6 @@ export function Testimonials() {
                 </div>
               </div>
 
-              {/* Right — Screenshot placeholder */}
               <div className="relative border-t lg:border-t-0 lg:border-l border-border bg-secondary/30">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -146,11 +130,8 @@ export function Testimonials() {
                     transition={{ duration: 0.3 }}
                     className="h-full min-h-[360px] lg:min-h-[480px] flex items-center justify-center p-8"
                   >
-                    {/* Replace this placeholder with real project screenshots */}
                     <div className="w-full max-w-sm">
-                      {/* Fake browser window */}
                       <div className="rounded-xl border border-border bg-background shadow-lg overflow-hidden">
-                        {/* Browser chrome */}
                         <div className="flex items-center gap-1.5 px-4 py-2.5 bg-secondary/50 border-b border-border">
                           <span className="h-2 w-2 rounded-full bg-red-400/50" />
                           <span className="h-2 w-2 rounded-full bg-yellow-400/50" />
@@ -159,7 +140,6 @@ export function Testimonials() {
                             {testimonial.project}
                           </span>
                         </div>
-                        {/* Wireframe content */}
                         <div className="p-5 space-y-3">
                           <div className="h-4 w-2/3 rounded bg-border/70" />
                           <div className="h-3 w-full rounded bg-border/50" />
@@ -175,15 +155,6 @@ export function Testimonials() {
                         </div>
                       </div>
                     </div>
-
-                    {/* When you have real screenshots, use:
-                    <Image
-                      src={`/images/testimonials/${testimonial.project}.jpg`}
-                      alt={`${testimonial.project} screenshot`}
-                      fill
-                      className="object-cover"
-                    />
-                    */}
                   </motion.div>
                 </AnimatePresence>
               </div>

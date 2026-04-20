@@ -6,34 +6,39 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
-    question: "What's your development process?",
+    question: "I'm not technical — can I still work with you?",
     answer:
-      "We follow an agile methodology with 2-week sprints. Every engagement starts with a discovery phase where we understand your goals, constraints, and technical landscape. Then we architect a solution, build iteratively with continuous feedback, and stay with you through launch and beyond. You see progress weekly — no surprises.",
+      "Absolutely. Most of our clients aren't technical, and they don't need to be. You tell us the business problem — 'my team spends 10 hours a week on manual data entry' or 'I need a better way to track leads' — and we handle the rest. We explain everything in plain English, not code.",
   },
   {
-    question: "What technologies do you work with?",
+    question: "How much does a typical project cost?",
     answer:
-      "Our core stack includes React, Next.js, Node.js, Python, and PostgreSQL — but we're technology-agnostic. We choose the best tools for each project based on your requirements, team capabilities, and long-term maintainability. For AI/ML, we work with TensorFlow, PyTorch, and OpenAI APIs.",
+      "It depends on what you need. A simple automation setup might be a few thousand dollars. A full custom CRM or AI agent system could be $10K–$50K+. We give you a fixed price upfront after our discovery call — no hourly billing surprises and no scope creep unless you ask for changes.",
   },
   {
-    question: "How long does a typical project take?",
+    question: "How long does it take to build something?",
     answer:
-      "It depends on scope. An MVP can ship in 6-8 weeks. A full platform build typically takes 3-5 months. We'll give you a clear timeline during our discovery phase — and we have a track record of hitting deadlines.",
+      "Most projects take 4–12 weeks depending on complexity. A workflow automation or content tool can be done in 4–6 weeks. A full app or custom CRM is typically 8–12 weeks. We'll give you a clear timeline before we start, and we have a 98% on-time delivery rate.",
   },
   {
-    question: "Do you offer ongoing support after launch?",
+    question: "What's the difference between you and just using Zapier or HubSpot?",
     answer:
-      "Absolutely. We offer flexible maintenance and support plans that include monitoring, security updates, performance optimization, and feature development. We don't disappear after launch — we stay with you as your technology partner.",
+      "Off-the-shelf tools are great until they aren't. When you need logic that doesn't fit their templates, data that doesn't match their fields, or workflows that cross multiple platforms — that's where we come in. We build custom systems that do exactly what you need, with no workarounds or duct tape.",
   },
   {
-    question: "What's your pricing structure?",
+    question: "Do you build AI agents that actually work, or is it just chatbots?",
     answer:
-      "We price based on project scope, not hourly rates. After our discovery call, we provide a detailed proposal with fixed pricing so you know exactly what to expect. No hidden fees, no surprise invoices. Typical projects range from $5,000 to $50,000+.",
+      "We build agents that do real work — not just answer FAQs. Our agents qualify leads, process documents, extract data, route tasks, and integrate with your existing tools. If it can be described as a repeatable process, we can probably build an agent that handles it.",
   },
   {
-    question: "Can you work with our existing team?",
+    question: "What happens after you deliver the project?",
     answer:
-      "Yes. We frequently embed with client teams as an extension of their engineering department. Whether you need full project delivery or targeted augmentation, we adapt to your workflow and communication style.",
+      "We don't disappear. Every project includes a handoff with documentation and training. After that, we offer ongoing support plans for monitoring, updates, and improvements. Most clients come back with new projects within 6 months — we take that as a compliment.",
+  },
+  {
+    question: "Can you work with our existing tools and systems?",
+    answer:
+      "Yes. We regularly integrate with Slack, Google Workspace, CRMs, payment processors, email platforms, and custom APIs. If your tool has an API (most do), we can connect to it. If it doesn't, we'll find a workaround.",
   },
 ];
 
@@ -48,7 +53,6 @@ export function FAQ() {
       <div className="absolute inset-0 bg-secondary/40" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,14 +60,13 @@ export function FAQ() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            FAQs
+            Common Questions
           </p>
           <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-            Your Questions, Answered
+            Straight Answers to Common Questions
           </h2>
         </motion.div>
 
-        {/* Accordion */}
         <div className="mt-12 space-y-3">
           {faqs.map((faq, i) => (
             <motion.div

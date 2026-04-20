@@ -16,29 +16,29 @@ import Link from "next/link";
 const contactOptions = [
   {
     icon: FileText,
-    title: "Request a proposal for your project",
-    description: "Tell us about your project and we'll prepare a detailed proposal.",
+    title: "I have a project — let's talk",
+    description: "Tell us what you're building and we'll come back with a plan and a price.",
     href: "/contact/proposal",
     primary: true,
   },
   {
     icon: Briefcase,
-    title: "Apply for a job and join our team",
-    description: "Explore opportunities at Refacint Technologies.",
+    title: "I want to work at Refacint",
+    description: "We're always looking for sharp developers and thinkers.",
     href: "mailto:careers@refacint.com",
     primary: false,
   },
   {
     icon: MessageSquare,
-    title: "General inquiry or question",
-    description: "Have a question? We're happy to help.",
+    title: "Just a quick question",
+    description: "No commitment needed. Ask us anything about what we do.",
     href: "mailto:hello@refacint.com",
     primary: false,
   },
   {
     icon: Users,
-    title: "I'm an existing or past client",
-    description: "Reach out to your project lead or contact us directly.",
+    title: "I'm already a client",
+    description: "Need support or want to start a new project? Reach out anytime.",
     href: "mailto:support@refacint.com",
     primary: false,
   },
@@ -53,13 +53,13 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: "Location",
+    label: "Based in",
     value: "Lagos, Nigeria",
     href: null,
   },
   {
     icon: Clock,
-    label: "Response Time",
+    label: "Typical Response",
     value: "Within 24 hours",
     href: null,
   },
@@ -71,7 +71,6 @@ export function ContactPage() {
       <div className="absolute inset-0 bg-grid opacity-30" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,18 +78,17 @@ export function ContactPage() {
           className="max-w-2xl"
         >
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            Contact Us
+            Get in Touch
           </p>
           <h1 className="mt-4 font-heading text-[2.6rem] sm:text-[3rem] font-bold tracking-tight leading-[1.15]">
-            Let&apos;s Connect You With The Right Person
+            Let&apos;s Figure Out What You Need
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Select one of the options below to connect with us. We&apos;re ready
-            to help with any questions or requests you may have.
+            No sales pitch. No pressure. Pick the option that fits and
+            we&apos;ll take it from there. Most people hear back within a day.
           </p>
         </motion.div>
 
-        {/* Option Cards */}
         <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {contactOptions.map((option, i) => (
             <motion.div
@@ -130,7 +128,6 @@ export function ContactPage() {
           ))}
         </div>
 
-        {/* Contact Info Cards */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -151,10 +148,7 @@ export function ContactPage() {
                     {item.label}
                   </p>
                   {item.href ? (
-                    <a
-                      href={item.href}
-                      className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
-                    >
+                    <a href={item.href} className="text-sm font-semibold text-foreground hover:text-primary transition-colors">
                       {item.value}
                     </a>
                   ) : (
@@ -168,7 +162,6 @@ export function ContactPage() {
           ))}
         </motion.div>
 
-        {/* Discovery call note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,17 +170,18 @@ export function ContactPage() {
           className="mt-10 rounded-2xl border border-primary/15 bg-primary/5 p-7 max-w-2xl"
         >
           <p className="text-sm font-semibold text-foreground">
-            Not ready for a full project?
+            Not sure what you need yet?
           </p>
           <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-            We also offer free 30-minute discovery calls to help you scope your
-            idea and understand what&apos;s possible. No commitment required.
+            That&apos;s completely normal. Book a free 30-minute call and we&apos;ll
+            help you figure it out. No jargon, no pressure — just an honest
+            conversation about what&apos;s possible.
           </p>
           <Link
             href="mailto:hello@refacint.com"
             className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            Book a discovery call
+            Book a free discovery call
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </motion.div>
