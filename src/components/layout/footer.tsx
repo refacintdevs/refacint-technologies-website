@@ -19,9 +19,10 @@ const footerLinks = {
     { label: "Contact", href: "/contact" },
   ],
   Connect: [
-    { label: "LinkedIn", href: "#" },
-    { label: "Twitter / X", href: "#" },
-    { label: "GitHub", href: "#" },
+    // Social links commented out — enable when accounts are live:
+    // { label: "LinkedIn", href: "#" },
+    // { label: "Twitter / X", href: "#" },
+    // { label: "GitHub", href: "#" },
     { label: "Email Us", href: "mailto:hello@refacint.com" },
   ],
 };

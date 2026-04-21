@@ -18,7 +18,7 @@ const contactOptions = [
     icon: FileText,
     title: "I have a project — let's talk",
     description: "Tell us what you're building and we'll come back with a plan and a price.",
-    href: "/contact/proposal",
+    href: "mailto:proposal@refacint.com",
     primary: true,
   },
   {

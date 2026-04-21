@@ -2,8 +2,10 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { projects } from "@/lib/projects";
 
 const roles = [
   "Apps & Software",
@@ -11,40 +13,6 @@ const roles = [
   "Automated Workflows",
   "Custom CRMs",
   "Content Systems",
-  "Automation Tools",
-];
-
-const portfolioItems = [
-  {
-    title: "Client CRM System",
-    category: "Custom CRM",
-    image: "/images/portfolio/crm.jpg",
-  },
-  {
-    title: "AI Content Engine",
-    category: "Content Automation",
-    image: "/images/portfolio/content.jpg",
-  },
-  {
-    title: "E-Commerce Platform",
-    category: "Fullstack App",
-    image: "/images/portfolio/ecommerce.jpg",
-  },
-  {
-    title: "Lead Qualification Agent",
-    category: "AI Agent",
-    image: "/images/portfolio/agent.jpg",
-  },
-  {
-    title: "Operations Dashboard",
-    category: "Web App",
-    image: "/images/portfolio/dashboard.jpg",
-  },
-  {
-    title: "Booking & Scheduling App",
-    category: "Workflow Automation",
-    image: "/images/portfolio/booking.jpg",
-  },
 ];
 
 function RotatingText() {
@@ -100,7 +68,8 @@ function AutoScrollCarousel() {
     return () => cancelAnimationFrame(animationId);
   }, [isPaused]);
 
-  const items = [...portfolioItems, ...portfolioItems];
+  // Duplicate for infinite scroll
+  const items = [...projects, ...projects];
 
   return (
     <div
@@ -110,27 +79,35 @@ function AutoScrollCarousel() {
       className="flex gap-5 overflow-x-hidden"
     >
       {items.map((item, i) => (
-        <div
-          key={`${item.title}-${i}`}
+        <Link
+          key={`${item.slug}-${i}`}
+          href={item.url || "/work"}
+          target={item.url ? "_blank" : undefined}
+          rel={item.url ? "noopener noreferrer" : undefined}
           className="shrink-0 w-[340px] sm:w-[400px] lg:w-[460px]"
         >
           <div className="relative h-[220px] sm:h-[260px] lg:h-[295px] rounded-2xl overflow-hidden group cursor-pointer bg-secondary border border-border">
-            <div className="absolute inset-0 bg-gradient-to-br from-secondary via-muted to-secondary" />
-            <div className="absolute top-0 left-0 right-0 h-8 bg-background/60 backdrop-blur-sm flex items-center px-3 gap-1.5 border-b border-border/50">
+            {/* Browser chrome */}
+            <div className="absolute top-0 left-0 right-0 h-8 bg-background/90 backdrop-blur-sm flex items-center px-3 gap-1.5 border-b border-border/50 z-10">
               <span className="h-2 w-2 rounded-full bg-red-400/60" />
               <span className="h-2 w-2 rounded-full bg-yellow-400/60" />
               <span className="h-2 w-2 rounded-full bg-green-400/60" />
-              <span className="ml-3 text-[10px] text-muted-foreground/60 font-mono">
-                {item.title.toLowerCase().replace(/\s+/g, "-")}.com
+              <span className="ml-3 text-[10px] text-muted-foreground/70 font-mono truncate">
+                {item.domain}
               </span>
             </div>
-            <div className="absolute top-12 left-5 right-5 space-y-3">
-              <div className="h-5 w-3/4 rounded bg-border/60" />
-              <div className="h-3 w-full rounded bg-border/40" />
-              <div className="h-3 w-5/6 rounded bg-border/40" />
-              <div className="mt-4 h-8 w-28 rounded-lg bg-primary/15" />
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background/90 via-background/50 to-transparent">
+
+            {/* Real screenshot */}
+            <Image
+              src={item.image}
+              alt={`${item.title} screenshot`}
+              fill
+              sizes="(max-width: 640px) 340px, (max-width: 1024px) 400px, 460px"
+              className="object-cover object-top pt-8 transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+
+            {/* Bottom label */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background/95 via-background/70 to-transparent">
               <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
                 {item.category}
               </p>
@@ -138,9 +115,11 @@ function AutoScrollCarousel() {
                 {item.title}
               </p>
             </div>
+
+            {/* Hover overlay */}
             <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300" />
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
@@ -165,11 +144,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.1,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-4xl"
         >
           <h1 className="font-heading text-[1.75rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.6rem] font-extrabold leading-[1.2] tracking-tight">
