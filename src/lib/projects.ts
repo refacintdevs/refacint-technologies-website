@@ -34,9 +34,9 @@ export const projects: Project[] = [
     testimonial: {
       quote:
         "Refacint built us more than a website — they built the backbone of how we operate. Parents can now see their kids' progress in real time, our admin work is cut in half, and enrolment inquiries have doubled since launch. Every detail was thought through.",
-      name: "Dr. Abdulraheem",
-      title: "Principal, MOLEK Schools",
-      initials: "DA",
+      name: "Proprietor Alhaja F A adeniyi",
+      title: "Proprietor, MOLEK Schools",
+      initials: "FA",
     },
   },
   {
@@ -51,8 +51,8 @@ export const projects: Project[] = [
     testimonial: {
       quote:
         "The student portal changed everything. Before this, we were sending grades in printed reports and answering the same parent questions over and over. Now it's all self-service, and our students actually enjoy logging in. The team delivered exactly what we pictured.",
-      name: "Mrs. Olawale",
-      title: "Vice Principal, MOLEK Schools",
+      name: "Mr M Oladele",
+      title: "ICT INSTRUCTOR, MOLEK Schools",
       initials: "MO",
     },
   },
@@ -68,9 +68,9 @@ export const projects: Project[] = [
     testimonial: {
       quote:
         "We had the idea but no clear path to building it. Refacint took our rough concept and turned it into a real product used by teachers every day. The AI actually understands the Nigerian curriculum — that's not something you get with generic tools.",
-      name: "Tunde A.",
-      title: "Founder, Klassrun Technologies",
-      initials: "TA",
+      name: "Afeez Temitope",
+      title: "Co-Founder, Klassrun Technologies",
+      initials: "AT",
     },
   },
   {
