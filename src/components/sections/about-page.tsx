@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Target, Eye, Gem, Users } from "lucide-react";
 
 const stats = [
-  { value: "50+", label: "Projects Shipped" },
+  // { value: "50+", label: "Projects Shipped" },
   { value: "7", label: "Core Services" },
   { value: "98%", label: "On-Time Delivery" },
-  { value: "4+", label: "Years Building" },
+  // { value: "4+", label: "Years Building" },
 ];
 
 const values = [
@@ -37,38 +37,38 @@ const values = [
   },
 ];
 
-const timeline = [
-  {
-    year: "2021",
-    title: "Started Building",
-    description:
-      "Founded with a simple idea: business owners deserve tech partners who actually deliver — not agencies that overpromise and underdeliver.",
-  },
-  {
-    year: "2022",
-    title: "First Major Systems",
-    description:
-      "Shipped our first production CRM and automation system. Clients started coming back with second and third projects.",
-  },
-  {
-    year: "2023",
-    title: "AI Gets Real",
-    description:
-      "Started building AI agents and automation systems for clients. Not hype — real tools that saved real hours every week.",
-  },
-  {
-    year: "2024",
-    title: "Team & Process Matured",
-    description:
-      "Grew the team, locked in our process. Every project now runs on the same framework: discover, design, build, ship, support.",
-  },
-  {
-    year: "2025",
-    title: "50+ Projects Shipped",
-    description:
-      "Crossed 50 completed projects with a 98% on-time delivery rate. Expanded into content automation and AI consulting.",
-  },
-];
+// const timeline = [
+//   {
+//     year: "2021",
+//     title: "Started Building",
+//     description:
+//       "Founded with a simple idea: business owners deserve tech partners who actually deliver — not agencies that overpromise and underdeliver.",
+//   },
+//   {
+//     year: "2022",
+//     title: "First Major Systems",
+//     description:
+//       "Shipped our first production CRM and automation system. Clients started coming back with second and third projects.",
+//   },
+//   {
+//     year: "2023",
+//     title: "AI Gets Real",
+//     description:
+//       "Started building AI agents and automation systems for clients. Not hype — real tools that saved real hours every week.",
+//   },
+//   {
+//     year: "2024",
+//     title: "Team & Process Matured",
+//     description:
+//       "Grew the team, locked in our process. Every project now runs on the same framework: discover, design, build, ship, support.",
+//   },
+//   {
+//     year: "2025",
+//     title: "50+ Projects Shipped",
+//     description:
+//       "Crossed 50 completed projects with a 98% on-time delivery rate. Expanded into content automation and AI consulting.",
+//   },
+// ];
 
 const team = [
   { name: "Founder & CEO", initials: "RC" },
@@ -214,44 +214,8 @@ export function AboutPage() {
           </div>
         </div>
 
-        {/* Team */}
-        <div className="mt-28">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-              The Team
-            </p>
-            <h2 className="mt-3 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-              The People Behind the Work
-            </h2>
-          </motion.div>
-
-          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
-            {team.map((member, i) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06, duration: 0.5 }}
-                className="rounded-2xl border border-border bg-background p-5 text-center transition-all duration-300 hover:border-primary/20 hover:shadow-md"
-              >
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary text-xl font-bold text-primary">
-                  {member.initials}
-                </div>
-                <p className="mt-4 text-sm font-semibold text-foreground">
-                  {member.name}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Timeline */}
+{/* 
+        Timeline
         <div className="mt-28">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -299,7 +263,7 @@ export function AboutPage() {
               </motion.div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
