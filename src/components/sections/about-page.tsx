@@ -105,7 +105,7 @@ export function AboutPage() {
           </p>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ export function AboutPage() {
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Brand Story */}
         <motion.div
