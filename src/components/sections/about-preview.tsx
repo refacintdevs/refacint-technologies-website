@@ -5,10 +5,9 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const stats = [
-  { value: "50+", label: "Projects Shipped" },
+  // { value: "50+", label: "Projects Shipped" },
   { value: "98%", label: "On-Time Delivery" },
-  { value: "7", label: "Core Services" },
-  { value: "4+", label: "Years Building" },
+  { value: "7+", label: "Core Services" },
 ];
 
 export function AboutPreview() {

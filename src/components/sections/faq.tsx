@@ -13,7 +13,7 @@ const faqs = [
   {
     question: "How much does a typical project cost?",
     answer:
-      "It depends on what you need. A simple automation setup might be a few thousand dollars. A full custom CRM or AI agent system could be $10K–$50K+. We give you a fixed price upfront after our discovery call — no hourly billing surprises and no scope creep unless you ask for changes.",
+      " It depends on what you need. A simple automation or small tool will cost a lot less than a full custom CRM or AI agent system. After our first call, we send you a clear proposal with a fixed price — no hourly billing, no hidden fees, and no scope creep unless you ask for changes. We work with clients on flexible payment terms, and every quote is tailored to the scope and value of your project.",
   },
   {
     question: "How long does it take to build something?",
@@ -21,12 +21,13 @@ const faqs = [
       "Most projects take 4–12 weeks depending on complexity. A workflow automation or content tool can be done in 4–6 weeks. A full app or custom CRM is typically 8–12 weeks. We'll give you a clear timeline before we start, and we have a 98% on-time delivery rate.",
   },
   {
-    question: "What's the difference between you and just using Zapier or HubSpot?",
+    question: "What's the difference between you and just using Zapier or N8N?",
     answer:
       "Off-the-shelf tools are great until they aren't. When you need logic that doesn't fit their templates, data that doesn't match their fields, or workflows that cross multiple platforms — that's where we come in. We build custom systems that do exactly what you need, with no workarounds or duct tape.",
   },
   {
-    question: "Do you build AI agents that actually work, or is it just chatbots?",
+    question:
+      "Do you build AI agents that actually work, or is it just chatbots?",
     answer:
       "We build agents that do real work — not just answer FAQs. Our agents qualify leads, process documents, extract data, route tasks, and integrate with your existing tools. If it can be described as a repeatable process, we can probably build an agent that handles it.",
   },
@@ -45,8 +46,7 @@ const faqs = [
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggle = (i: number) =>
-    setOpenIndex(openIndex === i ? null : i);
+  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
     <section className="relative py-24 overflow-hidden">
